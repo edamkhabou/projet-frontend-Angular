@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        .container {
+            margin-bottom: 20px; /* Adjust margin as needed */
+        }
+
+        .custom-card {
+            width: 100%; /* Make the card take the full width */
+        }
+
+        .chart-container {
+            width: 100%; /* Make the chart container take the full width */
+        }
+
+        #MyChart, #canvas {
+            width: 100%; /* Make the canvas take the full width */
+            height: 400px; /* Adjust the height as needed */
+        }
+
+        #canvas1 {
+            width: 100%; /* Make the canvas take the full width */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="card custom-card">
+            <table>
+                <tr>
+                    <td>
+                        <div class="container">
+                            <div class="card custom-card">
+                                <div class="card-body">
+                                    <h4>Produit Plus Cher <i class="fas fa-star"></i></h4>
+                                    <h5 class="card-title">{{p1.designation}}</h5>
+                                    <h5 class="card-title">{{p1.prix}} DT</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="container">
+                            <div class="card custom-card">
+                                <div class="card-body">
+                                    <h4>Produit Moins Cher <i class="fas fa-solid fa-coins"></i></h4>
+                                    <h5 class="card-title">{{p2.designation}}</h5>
+                                    <h5 class="card-title">{{p2.prix}} DT</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card custom-card">
+            <div class="card-body">
+                <h5 class="card-title">Pourcentage Categories Par Quantité</h5>
+                <div class="chart-container">
+                    <canvas id="MyChart">{{ chart }}</canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card custom-card">
+            <div class="card-body">
+                <h5 class="card-title">Pourcentage Produit Par Quantité</h5>
+                <div class="chart-container">
+                    <canvas id="canvas">{{ chart }}</canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="card custom-card">
+            <div class="card-body">
+                <h5 class="card-title">Pourcentage Quantité vendu touts</h5>
+                <label for="datePicker">Sélectionnez une date : </label>
+                <input type="date" id="datePicker" [(ngModel)]="selectedDate" (change)="onDateChange()">
+                <div style="width: 100%; height: 400px;">
+                    <canvas id="canvas1"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <button type="button" (click)=" loadallproduitsasc()" class="btn btn-default">Produits Ascendent par Prix</button>
+        <button type="button" (click)=" loadallproduitsdesc()" class="btn btn-default">Produits Decendant par Prix</button>
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr>
+                    <th>Code</th>
+                    <th>Designation</th>
+                    <th>Prix</th>
+                    <th>Quantite</th>
+                    <th>Date Achat</th>
+                    <th>Categorie</th>
+                    <th>Marge Benificiaire</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let row of produit">
+                    <td>{{row.code}}</td>
+                    <td>{{row.designation}}</td>
+                    <td>{{row.prix}}</td>
+                    <td>{{row.quantite}}</td>
+                    <td>{{row.dateAchat}}</td>
+                    <td>{{row.categorie.libelle}}</td>
+                    <td>{{row.mb}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Include your Angular scripts and other dependencies as needed -->
+
+</body>
+</html>

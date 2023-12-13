@@ -1,4 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+.chart-container {
+    width: 50%; /* Occupies 100% of the parent container's width */
+    height: 100%; /* Occupies 100% of the parent container's height */
+}
 /*******************************/
 /*         Navigatioin         */
 /*******************************/
